@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Figma Assignment</title>
+    <link href="./output.css" rel="stylesheet" />
+  </head>
+  <body class="font-sans text-slate-600 antialiased">
+    <nav
+      class="container mx-auto px-6 py-4 flex justify-between items-center relative z-50"
+    >
+      <div class="text-2xl font-bold text-brand-pink">
+        IS: Simply Dummy Text Indeed
+        <br />
+        <div class="text-sm font-light text-brand-dark">
+          here is the text that can be a desc
+        </div>
+      </div>
+
+      <button id="menu-btn" class="md:hidden text-3xl focus:outline-none">
+        &#9776;
+      </button>
+
+      <ul class="hidden md:flex space-x-16 font-medium text-xl text-brand-dark">
+        <li><a href="#" class="hover:text-brand-pink transition">Home</a></li>
+        <li>
+          <a href="#" class="hover:text-brand-pink transition">About Us</a>
+        </li>
+        <li>
+          <a href="#" class="hover:text-brand-pink transition">Pricing</a>
+        </li>
+      </ul>
+
+      <div
+        id="mobile-menu"
+        class="absolute top-20 left-0 w-full bg-white shadow-lg flex-col items-center space-y-4 py-6 hidden md:hidden"
+      >
+        <a href="#" class="text-lg font-medium hover:text-brand-pink">Home</a>
+        <a href="#" class="text-lg font-medium hover:text-brand-pink"
+          >About Us</a
+        >
+        <a href="#" class="text-lg font-medium hover:text-brand-pink"
+          >Pricing</a
+        >
+      </div>
+    </nav>
+
+    <header
+      class="w-full bg-[url('./resources/bgimage.png')] bg-cover bg-center bg-no-repeat"
+    >
+      <div class="container mx-auto px-6 py-16 md:py-24">
+        <div class="flex flex-col-reverse md:flex-row items-center gap-12">
+          <div class="w-full md:w-1/2 text-center md:text-left">
+            <h1
+              class="text-4xl md:text-6xl font-bold text-brand-dark leading-tight mb-6"
+            >
+              Various Versi <br />
+              Have Evolved
+            </h1>
+            <img
+              src="resources/Icon.png"
+              alt="icon"
+              class="mb-5 inline-block md:inline"
+            />
+            <p class="text-lg text-gray-500 mb-8 max-w-lg mx-auto md:mx-0">
+              Lorem ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s.
+            </p>
+            <button
+              class="bg-brand-pink text-white px-8 py-3 font-semibold shadow-lg hover:bg-opacity-90 transition transform hover:-translate-y-1"
+            >
+              Read More
+            </button>
+          </div>
+
+          <div class="w-full md:w-1/2 flex justify-center">
+            <div
+              class="w-72 h-72 md:w-96 md:h-96 bg-pink-50 rounded-full flex items-center justify-center text-gray-400"
+            >
+              <img
+                src="https://placehold.co/400x400"
+                alt="Hero Image"
+                class="w-68 h-68 md:w-92 md:h-92 object-cover rounded-full"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="bg-gray-30 py-15">
+      <h1 class="text-4xl font-bold text-brand-dark mb-8 text-center">
+        Lorem Ipsum Is
+      </h1>
+      <br />
+
+      <div
+        class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-16"
+      >
+        <div
+          class="w-full md:w-1/2 h-80 bg-gray-300 shadow-sm flex items-center justify-center text-gray-400"
+        >
+          Image Placeholder
+        </div>
+        <div class="md:w-1/2 mx-2 px-3 py-3">
+          <h2 class="text-3xl font-bold text-brand-dark mb-4">
+            Lorem Ipsum Is Simply Dummy Text
+          </h2>
+          <p class="text-gray-600 mb-6 leading-relaxed">
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s. of the printing and typesetting industry.
+          </p>
+          <button
+            class="bg-brand-pink text-white px-8 py-3 font-semibold shadow-lg hover:bg-opacity-90 transition transform hover:-translate-y-1"
+          >
+            Read More
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-gray-30 py-15">
+      <h1 class="text-4xl font-bold text-brand-dark mb-8 text-center">
+        Establishments
+      </h1>
+      <br />
+
+      <div
+        class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-16"
+      >
+        <div class="md:w-1/2 mx-2 px-3 py-3">
+          <h2 class="text-3xl font-bold text-brand-dark mb-4">
+            Lorem Ipsum Is Simply Dummy Text
+          </h2>
+          <p class="text-gray-600 mb-6 leading-relaxed">
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s. of the printing and typesetting industry.
+          </p>
+          <button
+            class="bg-brand-pink text-white px-8 py-3 font-semibold shadow-lg hover:bg-opacity-90 transition transform hover:-translate-y-1"
+          >
+            Read More
+          </button>
+        </div>
+        <div
+          class="w-full md:w-1/2 h-80 bg-gray-300 shadow-sm flex items-center justify-center text-gray-400"
+        >
+          Image Placeholder
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-slate-50 py-20">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16 max-w-2xl mx-auto">
+          <h2 class="text-3xl font-bold text-brand-dark">Latest Updates</h2>
+        </div>
+
+        <div
+          id="articles-container"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        ></div>
+      </div>
+    </section>
+
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-3xl font-bold text-brand-dark mb-12">
+          Lorem Ipsum Is Sim
+        </h2>
+
+        <div
+          class="relative max-w-3xl mx-auto bg-gray-50 rounded-xl p-8 md:p-12 shadow-sm"
+        >
+          <button
+            id="prev-btn"
+            class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 bg-white p-3 rounded-full shadow hover:text-brand-pink transition"
+          >
+            &#8592;
+          </button>
+
+          <div
+            id="slider-content"
+            class="min-h-[120px] flex flex-col justify-center items-center transition-opacity duration-300"
+          >
+            <p class="text-xl text-gray-600 italic leading-relaxed">
+              "Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s."
+            </p>
+            <h4 class="font-bold text-brand-pink mt-6">- John Doe, CEO</h4>
+          </div>
+
+          <button
+            id="next-btn"
+            class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 bg-white p-3 rounded-full shadow hover:text-brand-pink transition"
+          >
+            &#8594;
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="bg-brand-pink text-white py-16">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-2xl md:text-3xl font-bold mb-4">
+          It is a long established fact
+        </h2>
+        <p class="text-pink-100 mb-8">
+          that a reader will be distracted by the readable content.
+        </p>
+
+        <form class="max-w-md mx-auto flex flex-col md:flex-row gap-4">
+          <input
+            type="email"
+            placeholder="Enter your email"
+            class="w-full px-4 py-3 rounded text-gray-800 focus:outline-none focus:ring-2 focus:ring-pink-300"
+          />
+          <button
+            type="button"
+            class="bg-white text-brand-pink font-bold px-8 py-3 rounded hover:bg-gray-100 transition"
+          >
+            Subscribe
+          </button>
+        </form>
+
+        <div
+          class="mt-12 pt-8 border-t border-pink-400 flex flex-col md:flex-row justify-between items-center text-sm text-pink-100"
+        >
+          <p>&copy; 2026 Figma Assignment. All rights reserved.</p>
+          <div class="flex space-x-4 mt-4 md:mt-0">
+            <a href="#" class="hover:text-white">Privacy</a>
+            <a href="#" class="hover:text-white">Terms</a>
+            <a href="#" class="hover:text-white">Contact</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
