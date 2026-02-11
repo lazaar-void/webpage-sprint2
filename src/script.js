@@ -108,42 +108,29 @@ const articles = [
 ];
 
 const container = document.getElementById('articles-container');
+const template = document.getElementById('article-template');
 
-if (container) {
-    const articlesHTML = articles.map(article => `
-      <article class="bg-white shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 flex flex-col h-full overflow-hidden dark:bg-gray-700 dark:border-gray-600">
-        
-        <div class="h-48 bg-gray-200 w-full object-cover relative group shrink-0 dark:bg-gray-600">
-            <img src="${article.image}" alt="${article.title}" class="w-full h-full object-cover">
-            
-            <span class="absolute -bottom-3 left-6 bg-brand-pink text-white text-xs font-bold px-3 py-1 uppercase tracking-wide shadow-sm dark:bg-pink-900 dark:text-gray-300">
-                ${article.tag}
-            </span>
-        </div>
+if (container && template) {
+    // Clear container just in case
+    container.innerHTML = '';
 
-        <div class="p-6 pt-8 flex flex-col grow">
-            
-            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">
-                ${article.category}
-            </h4>
+    articles.forEach(article => {
+        // Clone the template content
+        const clone = template.content.cloneNode(true);
 
-            <h3 class="text-xl font-bold text-brand-dark mb-3 leading-tight dark:text-gray-300">
-                ${article.title}
-            </h3>
+        // Find elements inside the clone and inject data
+        const img = clone.querySelector('.article-img');
+        img.src = article.image;
+        img.alt = article.title;
 
-            <p class="text-gray-500 text-sm leading-relaxed mb-6 line-clamp-5 dark:text-gray-400">
-                ${article.description}
-            </p>
+        clone.querySelector('.article-tag').textContent = article.tag;
+        clone.querySelector('.article-category').textContent = article.category;
+        clone.querySelector('.article-title').textContent = article.title;
+        clone.querySelector('.article-desc').textContent = article.description;
 
-            <a href="#" class="mt-auto inline-block text-brand-dark font-bold text-sm border-b-2 border-brand-pink pb-0.5 hover:text-brand-pink transition-colors w-max dark:text-gray-300 dark:border-gray-300">
-                Read the Post
-            </a>
-
-        </div>
-      </article>
-    `).join('');
-    
-    container.innerHTML = articlesHTML;
+        // Append the populated clone to the container
+        container.appendChild(clone);
+    });
 }
 
 // --- Theme Toggle Logic (Unchanged) ---
@@ -161,3 +148,53 @@ if (toggleBtn) {
         }
     });
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const emailInput = document.getElementById('newsletter-input');
+    const subscribeBtn = document.getElementById('subscribe-btn');
+    const errorMsg = document.getElementById('newsletter-error');
+
+    // Simple Email Regex (Checks for text + @ + text + . + text)
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (subscribeBtn && emailInput) {
+
+        emailInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault(); // Stops the form from refreshing the page
+                subscribeBtn.click(); // Programmatically clicks the button
+            }
+        });
+        
+        subscribeBtn.addEventListener('click', () => {
+            const email = emailInput.value.trim();
+
+            if (emailPattern.test(email)) {
+                // SUCCESS CASE
+                // 1. Clear errors
+                emailInput.classList.remove('border-red-500');
+                errorMsg.classList.add('hidden');
+                
+                // 2. Show success (You can replace this with a modal or toast)
+                alert("Success! You have subscribed.");
+                emailInput.value = ''; // Clear input
+
+            } else {
+                // ERROR CASE
+                // 1. Make border red
+                emailInput.classList.add('border-red-500');
+                
+                // 2. Show error message
+                errorMsg.classList.remove('hidden');
+            }
+        });
+
+        // Optional: Clear error when user starts typing again
+        emailInput.addEventListener('input', () => {
+            if (emailInput.classList.contains('border-red-500')) {
+                emailInput.classList.remove('border-red-500');
+                errorMsg.classList.add('hidden');
+            }
+        });
+    }
+});
