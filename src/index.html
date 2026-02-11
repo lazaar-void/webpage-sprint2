@@ -42,6 +42,7 @@
       name="twitter:image"
       content="https://webpage-sprint2-55vj.vercel.app/resources/5-webp.webp"
     />
+    <link rel="preload" as="image" href="./resources/bgimage.png" />
 
     <link rel="stylesheet" href="./resources/css/all.min.css" />
 
@@ -156,7 +157,8 @@
                 <img
                   src="./resources/image-webp.webp"
                   alt="Hero Image"
-                  loading="lazy"
+                  loading="eager"
+                  fetchpriority="high"
                   class="w-68 h-68 md:w-92 md:h-92 object-cover rounded-full"
                 />
               </picture>
