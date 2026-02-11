@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- Mobile Menu Logic (Unchanged) ---
+    // ==========================================
+    // 1. Mobile Menu Logic
+    // ==========================================
     const menuBtn = document.getElementById('menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
 
@@ -11,7 +13,39 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- UPDATED Testimonial Slider Logic ---
+    // ==========================================
+    // 2. Theme Toggle Logic (Consolidated)
+    // ==========================================
+    const themeToggleBtns = document.querySelectorAll('.theme-toggle');
+    const htmlElement = document.documentElement;
+
+    // Check saved preference on load
+    if (localStorage.getItem("theme") === "dark" || 
+       (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+        htmlElement.classList.add("dark");
+    } else {
+        htmlElement.classList.remove("dark");
+    }
+
+    // Define toggle function
+    const handleThemeToggle = () => {
+        if (htmlElement.classList.contains('dark')) {
+            htmlElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+        } else {
+            htmlElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+        }
+    };
+
+    // Attach to all buttons
+    themeToggleBtns.forEach(btn => {
+        btn.addEventListener('click', handleThemeToggle);
+    });
+
+    // ==========================================
+    // 3. Testimonial Slider Logic
+    // ==========================================
     const testimonials = [
         {
             text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
@@ -38,16 +72,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateSlider() {
         if (!contentDiv) return;
 
-        // Fade out
         contentDiv.style.opacity = '0';
         
         setTimeout(() => {
-            // Update HTML to match the new design structure
             contentDiv.innerHTML = `
                 <p class="text-xl md:text-2xl text-slate-700 italic leading-relaxed dark:text-gray-300 font-serif">
                     "${testimonials[currentIndex].text}"
                 </p>
-
                 <div class="mt-8 space-y-1">
                     <p class="text-pink-500 font-medium text-lg dark:text-pink-400">
                         ${testimonials[currentIndex].subtitle}
@@ -57,9 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     </p>
                 </div>
             `;
-            // Fade in
             contentDiv.style.opacity = '1';
-        }, 300); // Matches the duration-300 CSS class
+        }, 300);
     }
 
     if (prevBtn && nextBtn) {
@@ -73,123 +103,127 @@ document.addEventListener('DOMContentLoaded', () => {
             updateSlider();
         });
     }
-});
 
-// --- Article Render Logic (Unchanged) ---
-const articles = [
-  {
-    category: "Technology",
-    title: "The Future of AI",
-    description: "Artificial Intelligence is evolving rapidly. Here is what you need to know about the latest GPT models.",
-    image: "https://placehold.co/600x400", 
-    tag: "Trending"
-  },
-  {
-    category: "Design",
-    title: "Minimalism in 2024",
-    description: "Why less is more, and how whitespace allows your content to breathe in modern web design.",
-    image: "https://placehold.co/600x400",
-    tag: "Hot Topic"
-  },
-  {
-    category: "Coding",
-    title: "Tailwind vs Bootstrap",
-    description: "A deep dive into utility-first CSS frameworks and why they are taking over the frontend world.",
-    image: "https://placehold.co/600x400",
-    tag: "New"
-  },
-  {
-    category: "New Trends",
-    title: "New Post Title",
-    description: "Discover the latest trends shaping the industry in 2024.",
-    image: "https://placehold.co/600x400",
-    tag: "Fresh"
-  }
-];
+    // ==========================================
+    // 4. Article Rendering Logic (Static + Load More)
+    // ==========================================
+    const articlesContainer = document.getElementById('articles-container');
+    const articleTemplate = document.getElementById('article-template');
+    const loadMoreBtn = document.getElementById('load-more-btn');
+    let apiPage = 1;
 
-const container = document.getElementById('articles-container');
-const template = document.getElementById('article-template');
-
-if (container && template) {
-    // Clear container just in case
-    container.innerHTML = '';
-
-    articles.forEach(article => {
-        // Clone the template content
-        const clone = template.content.cloneNode(true);
-
-        // Find elements inside the clone and inject data
-        const img = clone.querySelector('.article-img');
-        img.src = article.image;
-        img.alt = article.title;
-
-        clone.querySelector('.article-tag').textContent = article.tag;
-        clone.querySelector('.article-category').textContent = article.category;
-        clone.querySelector('.article-title').textContent = article.title;
-        clone.querySelector('.article-desc').textContent = article.description;
-
-        // Append the populated clone to the container
-        container.appendChild(clone);
-    });
-}
-
-// --- Theme Toggle Logic (Unchanged) ---
-const toggleBtn = document.getElementById('theme-toggle');
-const htmlElement = document.documentElement;
-
-if (toggleBtn) {
-    toggleBtn.addEventListener('click', () => {
-        if (htmlElement.classList.contains('dark')) {
-            htmlElement.classList.remove('dark');
-            localStorage.setItem('theme', 'light');
-        } else {
-            htmlElement.classList.add('dark');
-            localStorage.setItem('theme', 'dark');
+    // Initial Static Articles
+    const initialArticles = [
+        {
+            category: "Technology",
+            title: "The Future of AI",
+            description: "Artificial Intelligence is evolving rapidly. Here is what you need to know about the latest GPT models.",
+            image: "./resources/5-webp.webp", 
+            tag: "Trending"
+        },
+        {
+            category: "Design",
+            title: "Minimalism in 2024",
+            description: "Why less is more, and how whitespace allows your content to breathe in modern web design.",
+            image: "./resources/image-webp.webp",
+            tag: "Hot Topic"
+        },
+        {
+            category: "Coding",
+            title: "Tailwind vs Bootstrap",
+            description: "A deep dive into utility-first CSS frameworks and why they are taking over the frontend world.",
+            image: "./resources/5-webp.webp",
+            tag: "New"
+        },
+        {
+            category: "New Trends",
+            title: "New Post Title",
+            description: "Discover the latest trends shaping the industry in 2024.",
+            image: "./resources/image-webp.webp",
+            tag: "Fresh"
         }
-    });
-}
+    ];
 
-document.addEventListener('DOMContentLoaded', () => {
+    // Helper Function to Render Articles
+    function renderArticles(list) {
+        if (!articlesContainer || !articleTemplate) return;
+
+        list.forEach(article => {
+            const clone = articleTemplate.content.cloneNode(true);
+
+            const img = clone.querySelector('.article-img');
+            // Handle both local images and API placeholder logic
+            img.src = article.image || `https://placehold.co/600x400?text=Post+${article.id}`;
+            img.alt = article.title;
+
+            clone.querySelector('.article-tag').textContent = article.tag || "New";
+            clone.querySelector('.article-category').textContent = article.category || "General";
+            clone.querySelector('.article-title').textContent = article.title;
+            clone.querySelector('.article-desc').textContent = article.description || article.body; // API uses 'body', local uses 'description'
+
+            articlesContainer.appendChild(clone);
+        });
+    }
+
+    // Render Initial Articles
+    renderArticles(initialArticles);
+
+    // Load More Button Logic (Fetch from API)
+    if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', () => {
+            const originalText = loadMoreBtn.innerText;
+            loadMoreBtn.innerText = 'Loading...';
+            loadMoreBtn.disabled = true;
+
+            fetch(`https://jsonplaceholder.typicode.com/posts?_limit=3&_page=${apiPage}`)
+                .then(response => response.json())
+                .then(posts => {
+                    renderArticles(posts); // Reuse the same render function
+                    apiPage++;
+                    loadMoreBtn.innerText = originalText;
+                    loadMoreBtn.disabled = false;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    loadMoreBtn.innerText = 'Error loading';
+                });
+        });
+    }
+
+    // ==========================================
+    // 5. Newsletter Validation Logic
+    // ==========================================
     const emailInput = document.getElementById('newsletter-input');
     const subscribeBtn = document.getElementById('subscribe-btn');
     const errorMsg = document.getElementById('newsletter-error');
-
-    // Simple Email Regex (Checks for text + @ + text + . + text)
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (subscribeBtn && emailInput) {
-
+        // Trigger on Enter key
         emailInput.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
-                e.preventDefault(); // Stops the form from refreshing the page
-                subscribeBtn.click(); // Programmatically clicks the button
+                e.preventDefault();
+                subscribeBtn.click();
             }
         });
-        
+
         subscribeBtn.addEventListener('click', () => {
             const email = emailInput.value.trim();
 
             if (emailPattern.test(email)) {
-                // SUCCESS CASE
-                // 1. Clear errors
+                // Success
                 emailInput.classList.remove('border-red-500');
                 errorMsg.classList.add('hidden');
-                
-                // 2. Show success (You can replace this with a modal or toast)
                 alert("Success! You have subscribed.");
-                emailInput.value = ''; // Clear input
-
+                emailInput.value = ''; 
             } else {
-                // ERROR CASE
-                // 1. Make border red
+                // Error
                 emailInput.classList.add('border-red-500');
-                
-                // 2. Show error message
                 errorMsg.classList.remove('hidden');
             }
         });
 
-        // Optional: Clear error when user starts typing again
+        // Clear error on typing
         emailInput.addEventListener('input', () => {
             if (emailInput.classList.contains('border-red-500')) {
                 emailInput.classList.remove('border-red-500');
