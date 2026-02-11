@@ -392,6 +392,9 @@
   .h-\[400px\] {
     height: 400px;
   }
+  .h-auto {
+    height: auto;
+  }
   .h-fit {
     height: fit-content;
   }

@@ -2,22 +2,58 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VOID - Sprint2 Website</title>
+
     <meta
       name="description"
       content="A brief description of your page content for search engines."
     />
+    <link rel="canonical" href="https://webpage-sprint2-55vj.vercel.app/" />
+    <meta name="theme-color" content="#ec4899" />
+    <link rel="icon" type="image/png" href="./resources/favicon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://webpage-sprint2-55vj.vercel.app/"
+    />
+    <meta property="og:title" content="VOID - Sprint2 Website" />
+    <meta
+      property="og:description"
+      content="Sprint 2 Website for VOID Training, showcasing our latest updates and services."
+    />
+    <meta
+      property="og:image"
+      content="https://webpage-sprint2-55vj.vercel.app/resources/5-webp.webp"
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:url"
+      content="https://webpage-sprint2-55vj.vercel.app/"
+    />
+    <meta name="twitter:title" content="VOID - Sprint2 Website" />
+    <meta
+      name="twitter:description"
+      content="Sprint 2 Website for VOID Training, showcasing our latest updates and services."
+    />
+    <meta
+      name="twitter:image"
+      content="https://webpage-sprint2-55vj.vercel.app/resources/5-webp.webp"
+    />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap"
       rel="stylesheet"
     />
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>VOID - Sprint2 Website</title>
     <link href="./output.css" rel="stylesheet" />
   </head>
   <body
@@ -154,14 +190,22 @@
           class="w-full h-fit md:w-1/2 flex items-center justify-center text-gray-400"
         >
           <picture>
+            <!-- <source srcset="./resources/5.avif" type="image/avif" /> -->
+
             <source srcset="./resources/5-webp.webp" type="image/webp" />
+
             <img
               src="./resources/5-webp.webp"
-              alt="Hero Image"
+              alt="Descriptive text about the image"
+              width="600"
+              height="400"
               loading="lazy"
+              decoding="async"
+              class="w-full h-auto object-cover"
             />
           </picture>
         </div>
+
         <div class="md:w-1/2 mx-2 px-3 py-3">
           <h2
             class="text-3xl font-bold text-brand-dark mb-4 dark:text-gray-300"
@@ -171,11 +215,11 @@
           <p class="text-gray-600 mb-6 leading-relaxed dark:text-gray-300">
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s. of the printing and typesetting industry.
+            ever since the 1500s.
           </p>
           <a
             href="#"
-            class="bg-brand-pink text-white px-8 py-3 font-semibold shadow-lg hover:bg-opacity-60 hover:transition hover:transform hover:-translate-y-1"
+            class="bg-brand-pink text-white px-8 py-3 font-semibold shadow-lg hover:bg-opacity-60 transition hover:-translate-y-1"
           >
             Read More
           </a>
@@ -216,11 +260,18 @@
           class="w-full h-fit md:w-1/2 flex items-center justify-center text-gray-400"
         >
           <picture>
-            <source srcset="./resources/5-webp.webp" type="image/webp" />
+            <!--  <source srcset="./resources/image-webp.avif" type="image/avif" /> -->
+
+            <source srcset="./resources/image-webp.webp" type="image/webp" />
+
             <img
-              src="./resources/5-webp.webp"
-              alt="Hero Image"
+              src="./resources/image-webp.webp"
+              alt="Descriptive text about the image"
+              width="600"
+              height="400"
               loading="lazy"
+              decoding="async"
+              class="w-full h-auto object-cover"
             />
           </picture>
         </div>
@@ -250,7 +301,10 @@
               <img
                 src=""
                 alt=""
+                width="600"
+                height="400"
                 loading="lazy"
+                decoding="async"
                 class="article-img w-full h-full object-cover"
               />
 
