@@ -231,4 +231,39 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // ==========================================
+    // 6. Accordion Logic (using for FontAwesome)
+    // ==========================================
+    const accordionBtns = document.querySelectorAll('.accordion-btn');
+
+    accordionBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const content = btn.nextElementSibling;
+            
+            // TARGET THE ICON HERE (Changed 'svg' to 'i')
+            const icon = btn.querySelector('i'); 
+
+            // Check if open
+            const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+
+            // Close others
+            accordionBtns.forEach(otherBtn => {
+                if (otherBtn !== btn) {
+                    otherBtn.nextElementSibling.style.maxHeight = '0px';
+                    // Reset other icons
+                    otherBtn.querySelector('i').classList.remove('rotate-180');
+                }
+            });
+
+            // Toggle current
+            if (!isOpen) {
+                content.style.maxHeight = content.scrollHeight + "px";
+                icon.classList.add('rotate-180');
+            } else {
+                content.style.maxHeight = '0px';
+                icon.classList.remove('rotate-180');
+            }
+        });
+    });
 });
