@@ -111,6 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const articleTemplate = document.getElementById('article-template');
     const loadMoreBtn = document.getElementById('load-more-btn');
     let apiPage = 1;
+    const MAX_PAGES = 3;
 
     // Initial Static Articles
     const initialArticles = [
@@ -178,10 +179,24 @@ document.addEventListener('DOMContentLoaded', () => {
             fetch(`https://jsonplaceholder.typicode.com/posts?_limit=3&_page=${apiPage}`)
                 .then(response => response.json())
                 .then(posts => {
-                    renderArticles(posts); // Reuse the same render function
-                    apiPage++;
-                    loadMoreBtn.innerText = originalText;
-                    loadMoreBtn.disabled = false;
+                    // 1. Check if the API actually gave us data
+                    if (posts.length > 0) {
+                        renderArticles(posts);
+                        apiPage++;
+                    }
+
+                    // 2. CHECK LIMIT: 
+                    // Stop if we reached MAX_PAGES OR if API returned fewer items than requested (end of list)
+                    if (apiPage > MAX_PAGES || posts.length < 3) {
+                        loadMoreBtn.innerText = 'No More Articles';
+                        loadMoreBtn.disabled = true;
+                        loadMoreBtn.classList.add('bg-gray-300', 'border-gray-300', 'text-gray-500', 'cursor-not-allowed'); // Optional styling
+                        loadMoreBtn.classList.remove('hover:bg-brand-pink', 'hover:text-white');
+                    } else {
+                        // Reset button if we are allowed to load more
+                        loadMoreBtn.innerText = originalText;
+                        loadMoreBtn.disabled = false;
+                    }
                 })
                 .catch(error => {
                     console.error('Error:', error);
