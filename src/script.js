@@ -46,66 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', handleThemeToggle);
     });
 
-    // ==========================================
-    // 3. Testimonial Slider Logic
-    // ==========================================
-    const testimonials = [
-        {
-            text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-            subtitle: "Lorem Ipsum is",
-            description: "It Is A Long Established Fact That A Read"
-        },
-        {
-            text: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
-            subtitle: "Why do we use it?",
-            description: "The Point of Using Lorem Ipsum Is That It Has"
-        },
-        {
-            text: "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC.",
-            subtitle: "Where does it come from?",
-            description: "It Comes From Sections 1.10.32 and 1.10.33"
-        }
-    ];
-
-    let currentIndex = 0;
-    const contentDiv = document.getElementById('slider-content');
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
-
-    function updateSlider() {
-        if (!contentDiv) return;
-
-        contentDiv.style.opacity = '0';
-        
-        setTimeout(() => {
-            contentDiv.innerHTML = `
-                <p class="text-xl md:text-2xl text-slate-700 italic leading-relaxed dark:text-gray-300 font-serif">
-                    "${testimonials[currentIndex].text}"
-                </p>
-                <div class="mt-8 space-y-1">
-                    <p class="text-pink-500 font-medium text-lg dark:text-pink-400">
-                        ${testimonials[currentIndex].subtitle}
-                    </p>
-                    <p class="text-slate-900 font-medium text-lg dark:text-white">
-                        ${testimonials[currentIndex].description}
-                    </p>
-                </div>
-            `;
-            contentDiv.style.opacity = '1';
-        }, 300);
-    }
-
-    if (prevBtn && nextBtn) {
-        nextBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % testimonials.length;
-            updateSlider();
-        });
-
-        prevBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
-            updateSlider();
-        });
-    }
 
     // ==========================================
     // 4. Article Rendering Logic (Static + Load More)
