@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
         menuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
             mobileMenu.classList.toggle('flex'); 
+
+            const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
+            menuBtn.setAttribute('aria-expanded', !isExpanded);
         });
     }
 
@@ -279,6 +282,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 content.style.maxHeight = '0px';
                 icon.classList.remove('rotate-180');
             }
+
+            const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+            btn.setAttribute('aria-expanded', !isExpanded);
         });
     });
 });
