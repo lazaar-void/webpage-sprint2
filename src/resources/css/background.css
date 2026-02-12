@@ -1,0 +1,32 @@
+/* 1. DÉFINITION DES PALETTES DE COULEURS */
+:root {
+  /* --- MODE CLAIR (Par défaut) --- */
+  --bg-base: #f3f4f6;       /* Gris très clair (fond) */
+  --bg-wave: #ffffff;       /* Blanc (les formes nuages) */
+  --bg-grid: #cbd5e1;       /* Gris moyen (la grille) */
+}
+
+/* --- MODE SOMBRE (S'active quand la classe .dark est présente) --- */
+.dark :root, .dark {
+  --bg-base: #0f172a;       /* Slate 900 (Fond très sombre) */
+  --bg-wave: #1e293b;       /* Slate 800 (Nuages légèrement plus clairs) */
+  --bg-grid: #334155;       /* Slate 700 (Grille subtile) */
+}
+
+/* 2. LE STYLE (Qui utilise les variables) */
+.background-css {
+  width: 100%;
+  min-height: 600px;
+  
+  /* On utilise la variable de fond */
+  background-color: var(--bg-base);
+
+  background-image:
+    /* COUCHE 1 : Les vagues (utilisent var(--bg-wave)) */
+    radial-gradient(circle at 15% 90%, var(--bg-wave) 0%, var(--bg-wave) 30%, transparent 60%),
+    radial-gradient(circle at 80% 10%, var(--bg-wave) 0%, transparent 50%),
+
+    /* COUCHE 2 : La grille (utilise var(--bg-grid)) */
+    repeating-linear-gradient(30deg,  var(--bg-grid) 0px, var(--bg-grid) 1px, transparent 1px, transparent 40px),
+    repeating-linear-gradient(150deg, var(--bg-grid) 0px, var(--bg-grid) 1px, transparent 1px, transparent 40px);
+}
